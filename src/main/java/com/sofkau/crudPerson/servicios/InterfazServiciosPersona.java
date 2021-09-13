@@ -12,4 +12,5 @@ public interface InterfazServiciosPersona {
     public void borrar(int id);
     public Persona actualizar(Persona persona);
 
+
 }

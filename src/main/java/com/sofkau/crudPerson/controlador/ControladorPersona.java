@@ -5,6 +5,7 @@ import com.sofkau.crudPerson.entidades.Persona;
 import com.sofkau.crudPerson.reposotorio.InterfazReposotorioPersona;
 import com.sofkau.crudPerson.servicios.InterfazServiciosPersona;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,6 +34,13 @@ public class ControladorPersona {
     public Persona listarPersonaPorId(@PathVariable int id) throws Exception {
         return servicio.listarId(id);
     }
+
+    @PutMapping(value = "/actualizarPersona")
+    public Persona actualizarPersona(@RequestBody Persona persona){
+        return servicio.actualizar(persona);
+    }
+
+
 
 
 

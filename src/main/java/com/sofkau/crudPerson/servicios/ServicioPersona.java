@@ -4,7 +4,9 @@ import com.sofkau.crudPerson.entidades.Persona;
 import com.sofkau.crudPerson.reposotorio.InterfazReposotorioPersona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,6 @@ public class ServicioPersona implements  InterfazServiciosPersona{
 
     @Override
     public List<Persona> listar() {
-
         return (List<Persona>) data.findAll();
     }
 
@@ -28,7 +29,11 @@ public class ServicioPersona implements  InterfazServiciosPersona{
 
     @Override
     public Persona guardar(Persona persona) {
-        return data.save(persona);
+        Optional<Persona> optional = data.findById(persona.getId());
+        if(optional.isEmpty()) {
+            data.save(persona);
+        }
+        return persona;
     }
 
     @Override
@@ -38,7 +43,13 @@ public class ServicioPersona implements  InterfazServiciosPersona{
 
     @Override
     public Persona actualizar(Persona persona) {
-//        Persona persona1 = data.findOne
+        Optional<Persona> optional = data.findById(persona.getId());
+        if(optional.isEmpty()) {
+            Persona personaAux = optional.get();
+            personaAux.setId(persona.getId());
+            personaAux.setNombre(persona.getNombre());
+            personaAux.setEdad(persona.getEdad());
+        }
         return data.save(persona);
     }
 }
