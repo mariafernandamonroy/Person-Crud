@@ -31,11 +31,12 @@ public class ServicioPersona implements  InterfazServiciosPersona{
 
     @Override
     public void borrar(int id) {
-
+        data.deleteById(id);
     }
 
     @Override
     public Persona actualizar(Persona persona) {
-        return null;
+//        Persona persona1 = data.findOne
+        return data.save(persona);
     }
 }
