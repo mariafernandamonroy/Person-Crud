@@ -21,12 +21,20 @@ public class ControladorPersona {
 
     @PostMapping(value = "/guardarPersona")
     public Persona guardarPersona(@RequestBody Persona persona){
-        return servicio.guadar(persona);
+        return servicio.guardar(persona);
     }
 
     @DeleteMapping(value = "/borrarPersona/{id}")
     public void borrarPersona(@PathVariable int id){
         servicio.borrar(id);
     }
+
+    @GetMapping(value = "/listarPersonaPorId/{id}")
+    public Persona listarPersonaPorId(@PathVariable int id) throws Exception {
+        return servicio.listarId(id);
+    }
+
+
+
 
 }

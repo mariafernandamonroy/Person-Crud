@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicioPersona implements  InterfazServiciosPersona{
@@ -21,11 +22,12 @@ public class ServicioPersona implements  InterfazServiciosPersona{
 
     @Override
     public Persona listarId(int id) {
-        return null;
+        Optional<Persona> optional = data.findById(id);
+        return optional.get();
     }
 
     @Override
-    public Persona guadar(Persona persona) {
+    public Persona guardar(Persona persona) {
         return data.save(persona);
     }
 
